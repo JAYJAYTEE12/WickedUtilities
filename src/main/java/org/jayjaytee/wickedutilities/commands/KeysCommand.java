@@ -39,23 +39,10 @@ public class KeysCommand implements ICommand {
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-        EntityPlayer player = (EntityPlayer) sender;
-        NonNullList<ItemStack> items = player.inventory.mainInventory;
-        for(ItemStack item : items){
-            if(item.getDisplayName().contains("Key Vault")){
-                getKeyAmountLine(item, 3);
-                getKeyAmountLine(item, 4);
-                getKeyAmountLine(item, 5);
-
-                showKeys = !showKeys;
-                if(showKeys) player.sendMessage(new TextComponentString("You are now showing your keys!"));
-                if(!showKeys) player.sendMessage(new TextComponentString("You are no longer showing your keys!"));
-                return;
-            }
-        }
+        showKeys = !showKeys;
     }
 
-    public static void getKeyAmountLine(ItemStack item, Integer line){
+    /*public static void getKeyAmountLine(ItemStack item, Integer line){
         String mine = item.getTagCompound().getCompoundTag("display").getTagList("Lore", 8).get(line).toString();
         String[] a = mine.split(" ");
         String[] b = a[2].split("/");
@@ -63,6 +50,40 @@ public class KeysCommand implements ICommand {
         if(line == 3) mineKeys = Integer.parseInt(UIUtils.removeLastCharacter(clean));
         if(line == 4) rareKeys = Integer.parseInt(UIUtils.removeLastCharacter(clean));
         if(line == 5) lKeys = Integer.parseInt(UIUtils.removeLastCharacter(clean));
+    }*/
+
+    public static void getKeyAmount(EntityPlayer player){
+        mineKeys = 0;
+        rareKeys = 0;
+        lKeys = 0;
+        NonNullList<ItemStack> items = player.inventory.mainInventory;
+        for(ItemStack item : items) {
+            if (item.getDisplayName().contains("Key Vault")) {
+
+                String mine = item.getTagCompound().getCompoundTag("display").getTagList("Lore", 8).get(3).toString();
+                String[] a = mine.split(" ");
+                String[] b = a[2].split("/");
+                String clean = b[0].replaceAll("\\D+", "");
+                int mkeys = Integer.parseInt(UIUtils.removeLastCharacter(clean));
+
+                String mine2 = item.getTagCompound().getCompoundTag("display").getTagList("Lore", 8).get(4).toString();
+                String[] a2 = mine2.split(" ");
+                String[] b2 = a2[2].split("/");
+                String clean2 = b2[0].replaceAll("\\D+", "");
+                int rkeys = Integer.parseInt(UIUtils.removeLastCharacter(clean2));
+
+                String mine3 = item.getTagCompound().getCompoundTag("display").getTagList("Lore", 8).get(5).toString();
+                String[] a3 = mine3.split(" ");
+                String[] b3 = a3[2].split("/");
+                String clean3 = b3[0].replaceAll("\\D+", "");
+                int lekeys = Integer.parseInt(UIUtils.removeLastCharacter(clean3));
+
+                mineKeys += mkeys;
+                rareKeys += rkeys;
+                lKeys += lekeys;
+
+            }
+        }
     }
 
     @Override
