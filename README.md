@@ -5,11 +5,11 @@ This mod comes with overlays/tools and utilities for the server WickedPrison tha
 
 ## Discalimer
 
-This mod is in BETA. It may have bugs or glitches but if you believe it is game breaking you can open an [issue](https://github.com/JAYJAYTEE12/WickedUtilities/issues). If for some reason you're unable to open an issue, contact me on discord JAYJAYTEE#0001
+This mod is in BETA. It may have bugs or glitches but if you believe it is game breaking you can open an [issue](https://github.com/ReegoEntertainment/WickedUtilities/issues). If for some reason you're unable to open an issue, contact me on discord JAYJAYTEE#0001
 
 ## Installation
 
-Use the releases [page](https://github.com/JAYJAYTEE12/WickedUtilities/releases) to install WickedUtilities.
+Use the releases [page](https://github.com/ReegoEntertainment/WickedUtilities/releases) to install WickedUtilities.
 
 ```
 AppData
