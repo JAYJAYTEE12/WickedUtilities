@@ -3,6 +3,10 @@
 A forge utilities mod for WickedPrison.
 This mod comes with overlays/tools and utilities for the server WickedPrison that could not be used in vanilla Minecraft.
 
+## Discalimer
+
+This mod is in BETA. It may have bugs or glitches but if you believe it is game breaking you can open an [issue](https://github.com/JAYJAYTEE12/WickedUtilities/issues). If for some reason you're unable to open an issue, contact me on discord JAYJAYTEE#0001
+
 ## Installation
 
 Use the releases [page](https://github.com/JAYJAYTEE12/WickedUtilities/releases) to install WickedUtilities.
