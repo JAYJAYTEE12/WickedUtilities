@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 
 import java.awt.*;
+import java.util.Random;
 
 public class UIUtils {
     public static void drawChromaWaveString(String text, int xIn, int y, boolean dropShadow) {
@@ -19,6 +20,7 @@ public class UIUtils {
             x += (double) renderer.getCharWidth(c);
         }
     }
+
     public static String removeLastCharacter(String str) {
         String result = null;
         if ((str != null) && (str.length() > 0)) {

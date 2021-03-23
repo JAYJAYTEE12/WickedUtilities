@@ -65,10 +65,23 @@ public class WickedUtilities {
         if(KeysCommand.showKeys){
             EntityPlayer player = (EntityPlayer) minecraft.player;
             KeysCommand.getKeyAmount(player);
-            UIUtils.drawChromaWaveString("Keys in Key Vault", 10, 10, true);
+            FontRenderer renderer = Minecraft.getMinecraft().fontRenderer;
+            /*UIUtils.drawChromaWaveString("Keys in Key Vault", 10, 10, true);
             UIUtils.drawChromaWaveString("Mine Keys: " + KeysCommand.mineKeys.toString(), 10, 30, false);
             UIUtils.drawChromaWaveString("Rare Keys: " + KeysCommand.rareKeys.toString(), 10, 40, false);
-            UIUtils.drawChromaWaveString("Legendary Keys: " + KeysCommand.lKeys.toString(), 10, 50, false);
+            UIUtils.drawChromaWaveString("Legendary Keys: " + KeysCommand.lKeys.toString(), 10, 50, false); */
+
+            renderer.drawString("Keys in Key Vaults", 10, 10, Color.WHITE.getRGB(), true);
+
+            renderer.drawString("Mine Keys ", 10, 30, Color.CYAN.getRGB());
+            renderer.drawString(KeysCommand.mineKeys.toString(), renderer.getStringWidth("Mine Keys ")+10, 30, Color.LIGHT_GRAY.getRGB());
+
+            renderer.drawString("Rare Keys ", 10, 40, Color.MAGENTA.getRGB());
+            renderer.drawString(KeysCommand.rareKeys.toString(), renderer.getStringWidth("Rare Keys ")+10, 40, Color.LIGHT_GRAY.getRGB());
+
+            renderer.drawString("Legendary Keys ", 10, 50, Color.RED.getRGB());
+            renderer.drawString(KeysCommand.lKeys.toString(), renderer.getStringWidth("Legendary Keys ")+10, 50, Color.LIGHT_GRAY.getRGB());
+
         }
 
     }
