@@ -21,6 +21,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.jayjaytee.wickedutilities.commands.KeysCommand;
 import org.jayjaytee.wickedutilities.commands.PoobCommand;
+import org.jayjaytee.wickedutilities.events.DisconnectEvent;
 import org.jayjaytee.wickedutilities.utils.UIUtils;
 import org.lwjgl.opengl.GL11;
 
@@ -54,6 +55,7 @@ public class WickedUtilities {
         ClientCommandHandler.instance.registerCommand(new PoobCommand());
         ClientCommandHandler.instance.registerCommand(new KeysCommand());
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new DisconnectEvent());
     }
 
     @SubscribeEvent
@@ -63,10 +65,10 @@ public class WickedUtilities {
             minecraft.fontRenderer.drawString("Poob is ENABLED", 100, 100, Color.GREEN.getRGB());
         }
         if(KeysCommand.showKeys){
-            UIUtils.drawChromaWaveString("Keys in Key Vault", 10, 10);
-            UIUtils.drawChromaWaveString("Mine Keys: " + KeysCommand.mineKeys.toString(), 10, 30);
-            UIUtils.drawChromaWaveString("Rare Keys: " + KeysCommand.rareKeys.toString(), 10, 40);
-            UIUtils.drawChromaWaveString("Legendary Keys: " + KeysCommand.lKeys.toString(), 10, 50);
+            UIUtils.drawChromaWaveString("Keys in Key Vault", 10, 10, true);
+            UIUtils.drawChromaWaveString("Mine Keys: " + KeysCommand.mineKeys.toString(), 10, 30, false);
+            UIUtils.drawChromaWaveString("Rare Keys: " + KeysCommand.rareKeys.toString(), 10, 40, false);
+            UIUtils.drawChromaWaveString("Legendary Keys: " + KeysCommand.lKeys.toString(), 10, 50, false);
 
             EntityPlayer player = (EntityPlayer) minecraft.player;
             NonNullList<ItemStack> items = player.inventory.mainInventory;
