@@ -22,7 +22,8 @@ AppData
 
 ```
 commands:
-    - /keys (Shows an overlay for your key vault)
+    - /keys (Toggles an overlay to show all your keys in your key vaults)
+    - /keyrainbow (Sets the key overlay to RaInBoW!!)
 ```
 
 ## Contributing

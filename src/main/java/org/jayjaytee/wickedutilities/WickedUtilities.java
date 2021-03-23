@@ -3,12 +3,8 @@ package org.jayjaytee.wickedutilities;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -19,11 +15,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import org.jayjaytee.wickedutilities.commands.KeyRainbowCommand;
 import org.jayjaytee.wickedutilities.commands.KeysCommand;
-import org.jayjaytee.wickedutilities.commands.PoobCommand;
 import org.jayjaytee.wickedutilities.events.DisconnectEvent;
 import org.jayjaytee.wickedutilities.utils.UIUtils;
-import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
@@ -50,8 +45,8 @@ public class WickedUtilities {
      */
     @Mod.EventHandler
     public void preinit(FMLPreInitializationEvent event) {
-        ClientCommandHandler.instance.registerCommand(new PoobCommand());
         ClientCommandHandler.instance.registerCommand(new KeysCommand());
+        ClientCommandHandler.instance.registerCommand(new KeyRainbowCommand());
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new DisconnectEvent());
     }
@@ -59,28 +54,28 @@ public class WickedUtilities {
     @SubscribeEvent
     public void onRenderTick(TickEvent.RenderTickEvent event){
         Minecraft minecraft = Minecraft.getMinecraft();
-        if(PoobCommand.test){
-            minecraft.fontRenderer.drawString("Poob is ENABLED", 100, 100, Color.GREEN.getRGB());
-        }
         if(KeysCommand.showKeys){
             EntityPlayer player = (EntityPlayer) minecraft.player;
             KeysCommand.getKeyAmount(player);
             FontRenderer renderer = Minecraft.getMinecraft().fontRenderer;
-            /*UIUtils.drawChromaWaveString("Keys in Key Vault", 10, 10, true);
-            UIUtils.drawChromaWaveString("Mine Keys: " + KeysCommand.mineKeys.toString(), 10, 30, false);
-            UIUtils.drawChromaWaveString("Rare Keys: " + KeysCommand.rareKeys.toString(), 10, 40, false);
-            UIUtils.drawChromaWaveString("Legendary Keys: " + KeysCommand.lKeys.toString(), 10, 50, false); */
 
-            renderer.drawString("Keys in Key Vaults", 10, 10, Color.WHITE.getRGB(), true);
+            if(KeyRainbowCommand.isRainbow){
+                UIUtils.drawChromaWaveString("Keys in Key Vaults", 10, 10, true);
+                UIUtils.drawChromaWaveString("Mine Keys " + KeysCommand.mineKeys.toString(), 10, 30, false);
+                UIUtils.drawChromaWaveString("Rare Keys " + KeysCommand.rareKeys.toString(), 10, 40, false);
+                UIUtils.drawChromaWaveString("Legendary Keys " + KeysCommand.lKeys.toString(), 10, 50, false);
+            }else{
+                renderer.drawString("Keys in Key Vaults", 10, 10, Color.WHITE.getRGB(), true);
 
-            renderer.drawString("Mine Keys ", 10, 30, Color.CYAN.getRGB());
-            renderer.drawString(KeysCommand.mineKeys.toString(), renderer.getStringWidth("Mine Keys ")+10, 30, Color.LIGHT_GRAY.getRGB());
+                renderer.drawString("Mine Keys ", 10, 30, Color.CYAN.getRGB());
+                renderer.drawString(KeysCommand.mineKeys.toString(), renderer.getStringWidth("Mine Keys ")+10, 30, Color.LIGHT_GRAY.getRGB());
 
-            renderer.drawString("Rare Keys ", 10, 40, Color.MAGENTA.getRGB());
-            renderer.drawString(KeysCommand.rareKeys.toString(), renderer.getStringWidth("Rare Keys ")+10, 40, Color.LIGHT_GRAY.getRGB());
+                renderer.drawString("Rare Keys ", 10, 40, Color.MAGENTA.getRGB());
+                renderer.drawString(KeysCommand.rareKeys.toString(), renderer.getStringWidth("Rare Keys ")+10, 40, Color.LIGHT_GRAY.getRGB());
 
-            renderer.drawString("Legendary Keys ", 10, 50, Color.RED.getRGB());
-            renderer.drawString(KeysCommand.lKeys.toString(), renderer.getStringWidth("Legendary Keys ")+10, 50, Color.LIGHT_GRAY.getRGB());
+                renderer.drawString("Legendary Keys ", 10, 50, Color.RED.getRGB());
+                renderer.drawString(KeysCommand.lKeys.toString(), renderer.getStringWidth("Legendary Keys ")+10, 50, Color.LIGHT_GRAY.getRGB());
+            }
 
         }
 

@@ -6,40 +6,38 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
-import org.jayjaytee.wickedutilities.utils.GameUtils;
+import net.minecraft.util.text.TextFormatting;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
-public class PoobCommand implements ICommand {
-    public static boolean test = false;
+public class KeyRainbowCommand implements ICommand {
+    public static boolean isRainbow = false;
 
     @Override
     public String getName() {
-        return "poob";
+        return "keyrainbow";
     }
 
     @Override
     public String getUsage(ICommandSender sender) {
-        return "/" + getName();
+        return "/"+getName();
     }
 
     @Override
     public List<String> getAliases() {
-        return new java.util.ArrayList<>(Collections.singletonList("poob"));
+        return new java.util.ArrayList<>(Collections.singletonList("keyrainbow"));
     }
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         EntityPlayer player = (EntityPlayer) sender;
-        if (GameUtils.checkForWicked()) {
-            player.sendMessage(new TextComponentString("You are connected to WickedPrison!"));
-            test = !test;
-        } else {
-            player.sendMessage(new TextComponentString("You are NOT connected to WickedPrison!"));
-        }
+        isRainbow = !isRainbow;
+        if(isRainbow) { player.sendMessage(new TextComponentString("Rainbow Keys Overlay ENABLED!").setStyle(new Style().setColor(TextFormatting.GREEN))); }
+        if(!isRainbow) { player.sendMessage(new TextComponentString("Rainbow Keys Overlay DISABLED!").setStyle(new Style().setColor(TextFormatting.RED))); }
     }
 
     @Override
@@ -61,6 +59,4 @@ public class PoobCommand implements ICommand {
     public int compareTo(ICommand o) {
         return 0;
     }
-
-
 }

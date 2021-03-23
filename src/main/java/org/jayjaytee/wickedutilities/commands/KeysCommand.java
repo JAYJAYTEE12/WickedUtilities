@@ -3,12 +3,15 @@ package org.jayjaytee.wickedutilities.commands;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import org.jayjaytee.wickedutilities.utils.UIUtils;
 
 import javax.annotation.Nullable;
@@ -39,7 +42,10 @@ public class KeysCommand implements ICommand {
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
+        EntityPlayer player = (EntityPlayer) sender;
         showKeys = !showKeys;
+        if(showKeys) { player.sendMessage(new TextComponentString("Keys Overlay ENABLED!").setStyle(new Style().setColor(TextFormatting.GREEN))); }
+        if(!showKeys) { player.sendMessage(new TextComponentString("Keys Overlay DISABLED!").setStyle(new Style().setColor(TextFormatting.RED))); }
     }
 
     /*public static void getKeyAmountLine(ItemStack item, Integer line){
