@@ -1,0 +1,16 @@
+[
+    {
+        "modid": "WickedUtilities",
+        "name": "WickedUtilities",
+        "description": "A utilities mod for WickedPrison",
+        "version": "${version}",
+        "mcversion": "${mcversion}",
+        "url": "",
+        "updateUrl": "",
+        "authorList": ["JAYJAYTEE"],
+        "credits": "",
+        "logoFile": "",
+        "screenshots": [],
+        "dependencies": []
+    }
+]
