@@ -25,6 +25,10 @@ public class KeysCommand implements ICommand {
     public static Integer rareKeys = 0;
     public static Integer lKeys = 0;
 
+    public static Integer maxMineKeys = 0;
+    public static Integer maxRareKeys = 0;
+    public static Integer maxLKeys = 0;
+
     @Override
     public String getName() {
         return "keys";
@@ -58,10 +62,15 @@ public class KeysCommand implements ICommand {
         if(line == 5) lKeys = Integer.parseInt(UIUtils.removeLastCharacter(clean));
     }*/
 
-    public static void getKeyAmount(EntityPlayer player){
+    public static <string> void getKeyAmount(EntityPlayer player){
+
         mineKeys = 0;
         rareKeys = 0;
         lKeys = 0;
+        maxMineKeys = 0;
+        maxRareKeys = 0;
+        maxLKeys = 0;
+
         NonNullList<ItemStack> items = player.inventory.mainInventory;
         for(ItemStack item : items) {
             if (item.getDisplayName().contains("Key Vault")) {
@@ -69,24 +78,34 @@ public class KeysCommand implements ICommand {
                 String mine = item.getTagCompound().getCompoundTag("display").getTagList("Lore", 8).get(3).toString();
                 String[] a = mine.split(" ");
                 String[] b = a[2].split("/");
+                String c = b[1].replaceAll("\\D+", "");
                 String clean = b[0].replaceAll("\\D+", "");
                 int mkeys = Integer.parseInt(UIUtils.removeLastCharacter(clean));
+                int mmkeys = Integer.parseInt(c);
 
                 String mine2 = item.getTagCompound().getCompoundTag("display").getTagList("Lore", 8).get(4).toString();
                 String[] a2 = mine2.split(" ");
                 String[] b2 = a2[2].split("/");
+                String c2 = b2[1].replaceAll("\\D+", "");
                 String clean2 = b2[0].replaceAll("\\D+", "");
                 int rkeys = Integer.parseInt(UIUtils.removeLastCharacter(clean2));
+                int mrkeys = Integer.parseInt(c2);
 
                 String mine3 = item.getTagCompound().getCompoundTag("display").getTagList("Lore", 8).get(5).toString();
                 String[] a3 = mine3.split(" ");
                 String[] b3 = a3[2].split("/");
+                String c3 = b3[1].replaceAll("\\D+", "");
                 String clean3 = b3[0].replaceAll("\\D+", "");
                 int lekeys = Integer.parseInt(UIUtils.removeLastCharacter(clean3));
+                int mlKeys = Integer.parseInt(c3);
 
                 mineKeys += mkeys;
                 rareKeys += rkeys;
                 lKeys += lekeys;
+
+                maxMineKeys += mmkeys;
+                maxRareKeys += mrkeys;
+                maxLKeys += mlKeys;
 
             }
         }

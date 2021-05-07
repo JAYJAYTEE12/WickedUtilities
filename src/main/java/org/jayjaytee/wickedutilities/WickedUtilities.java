@@ -61,20 +61,20 @@ public class WickedUtilities {
 
             if(KeyRainbowCommand.isRainbow){
                 UIUtils.drawChromaWaveString("Keys in Key Vaults", 10, 10, true);
-                UIUtils.drawChromaWaveString("Mine Keys " + KeysCommand.mineKeys.toString(), 10, 30, false);
-                UIUtils.drawChromaWaveString("Rare Keys " + KeysCommand.rareKeys.toString(), 10, 40, false);
-                UIUtils.drawChromaWaveString("Legendary Keys " + KeysCommand.lKeys.toString(), 10, 50, false);
+                UIUtils.drawChromaWaveString("Mine Keys " + KeysCommand.mineKeys.toString() + " / " + KeysCommand.maxMineKeys, 10, 30, false);
+                UIUtils.drawChromaWaveString("Rare Keys " + KeysCommand.rareKeys.toString() + " / " + KeysCommand.maxRareKeys, 10, 40, false);
+                UIUtils.drawChromaWaveString("Legendary Keys " + KeysCommand.lKeys.toString() + " / " + KeysCommand.maxLKeys, 10, 50, false);
             }else{
                 renderer.drawString("Keys in Key Vaults", 10, 10, Color.WHITE.getRGB(), true);
 
                 renderer.drawString("Mine Keys ", 10, 30, Color.CYAN.getRGB());
-                renderer.drawString(KeysCommand.mineKeys.toString(), renderer.getStringWidth("Mine Keys ")+10, 30, Color.LIGHT_GRAY.getRGB());
+                renderer.drawString(KeysCommand.mineKeys.toString() + " / " + KeysCommand.maxMineKeys, renderer.getStringWidth("Mine Keys ")+10, 30, Color.LIGHT_GRAY.getRGB());
 
                 renderer.drawString("Rare Keys ", 10, 40, Color.MAGENTA.getRGB());
-                renderer.drawString(KeysCommand.rareKeys.toString(), renderer.getStringWidth("Rare Keys ")+10, 40, Color.LIGHT_GRAY.getRGB());
+                renderer.drawString(KeysCommand.rareKeys.toString() + " / " + KeysCommand.maxRareKeys, renderer.getStringWidth("Rare Keys ")+10, 40, Color.LIGHT_GRAY.getRGB());
 
                 renderer.drawString("Legendary Keys ", 10, 50, Color.RED.getRGB());
-                renderer.drawString(KeysCommand.lKeys.toString(), renderer.getStringWidth("Legendary Keys ")+10, 50, Color.LIGHT_GRAY.getRGB());
+                renderer.drawString(KeysCommand.lKeys.toString() + " / " + KeysCommand.maxLKeys, renderer.getStringWidth("Legendary Keys ")+10, 50, Color.LIGHT_GRAY.getRGB());
             }
 
         }

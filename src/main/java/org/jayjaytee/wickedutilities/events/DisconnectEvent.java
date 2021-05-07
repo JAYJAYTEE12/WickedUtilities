@@ -10,7 +10,6 @@ public class DisconnectEvent extends Event {
     @SubscribeEvent
     public void onDisconnect(FMLNetworkEvent.ClientDisconnectionFromServerEvent event){
         Minecraft minecraft = Minecraft.getMinecraft();
-        System.out.println("Player Disconnected! ================================================");
         if(KeysCommand.showKeys){ KeysCommand.showKeys = false; }
     }
 }
