@@ -24,6 +24,7 @@ AppData
 commands:
     - /keys (Toggles an overlay to show all your keys in your key vaults)
     - /keyrainbow (Sets the key overlay to RaInBoW!!)
+    - /welc (Type this to automatically output "Welcome to the server! /mine to start :D")
 ```
 
 ## Contributing
