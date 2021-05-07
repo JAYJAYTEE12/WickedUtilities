@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.jayjaytee.wickedutilities.commands.KeyRainbowCommand;
 import org.jayjaytee.wickedutilities.commands.KeysCommand;
+import org.jayjaytee.wickedutilities.commands.WelcCommand;
 import org.jayjaytee.wickedutilities.events.DisconnectEvent;
 import org.jayjaytee.wickedutilities.utils.UIUtils;
 
@@ -47,6 +48,7 @@ public class WickedUtilities {
     public void preinit(FMLPreInitializationEvent event) {
         ClientCommandHandler.instance.registerCommand(new KeysCommand());
         ClientCommandHandler.instance.registerCommand(new KeyRainbowCommand());
+        ClientCommandHandler.instance.registerCommand(new WelcCommand());
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new DisconnectEvent());
     }
