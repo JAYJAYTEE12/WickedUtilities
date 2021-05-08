@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.jayjaytee.wickedutilities.commands.KeyRainbowCommand;
 import org.jayjaytee.wickedutilities.commands.KeysCommand;
 import org.jayjaytee.wickedutilities.commands.WelcCommand;
+import org.jayjaytee.wickedutilities.events.ConnectionEvent;
 import org.jayjaytee.wickedutilities.events.DisconnectEvent;
 import org.jayjaytee.wickedutilities.utils.UIUtils;
 
@@ -51,6 +52,7 @@ public class WickedUtilities {
         ClientCommandHandler.instance.registerCommand(new WelcCommand());
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new DisconnectEvent());
+        MinecraftForge.EVENT_BUS.register(new ConnectionEvent());
     }
 
     @SubscribeEvent
